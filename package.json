@@ -2,5 +2,8 @@
   "dependencies": {
     "@slack/bolt": "^3.12.2",
     "dotenv": "^16.0.3"
+  },
+  "scripts": {
+    "start": "app.js"
   }
 }
