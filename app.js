@@ -1,6 +1,7 @@
 require('dotenv').config();
 
 const { App } = require('@slack/bolt');
+const jsforce = require('jsforce');
 
 const app = new App({
     token: process.env.SLACK_APP_BOT_TOKEN,
