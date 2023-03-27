@@ -20,6 +20,13 @@ app.shortcut('who_am_i', async ({
     client
 }) => {
     try{
+        const connection = new jsforce.Connection({
+            loginUrl: process.env.SF_LOGIN_URL
+        });
+        const userInfo = await connection.login(
+            process.env.SF_USERNAME,
+            process.env.SF_PASSWD
+        );
         await ack();
         const result = await client.views.open({
             trigger_id: shortcut.trigger_id,
@@ -37,7 +44,7 @@ app.shortcut('who_am_i', async ({
                     type: "section",
                     text: {
                         type: "mrkdwn",
-                        text: "Hello!"
+                        text: "Logged in with user using userId ${userInfo.Id}"
                     }
                 }]
             }
