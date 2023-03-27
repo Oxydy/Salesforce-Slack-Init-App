@@ -35,7 +35,7 @@ app.shortcut('who_am_i', async ({
                 blocks: [{
                     type: "section",
                     text: {
-                        type: "mrkwdn",
+                        type: "mrkdwn",
                         text: "Hello!"
                     }
                 }]
