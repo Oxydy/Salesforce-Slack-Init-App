@@ -12,3 +12,37 @@ const app = new App({
     await app.start(process.env.PORT || port);
     console.log('⚡️ Bolt app is running');
 })();
+
+app.shortcut('who_am_i', async ({
+    shortcut,
+    ack,
+    client
+}) => {
+    try{
+        await ack();
+        const result = await client.views.open({
+            trigger_id: shortcut.trigger_id,
+            view: {
+                type: "modal",
+                title: {
+                    type: "plain_text",
+                    text: "My App"
+                },
+                close: {
+                    type: "plain_text",
+                    text: "Close"
+                },
+                blocks: [{
+                    type: "section",
+                    text: {
+                        type: "mrkwdn",
+                        text: "Hello!"
+                    }
+                }]
+            }
+        });
+        console.log(result);
+    }catch(error){
+        console.error(error);
+    }
+});
