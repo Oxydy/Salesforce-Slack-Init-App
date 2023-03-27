@@ -25,7 +25,8 @@ app.shortcut('who_am_i', async ({
         });
         const userInfo = await connection.login(
             process.env.SF_USERNAME,
-            process.env.SF_PASSWD
+            process.env.SF_PASSWD,
+            console.log(userInfo)
         );
         await ack();
         const result = await client.views.open({
@@ -44,7 +45,7 @@ app.shortcut('who_am_i', async ({
                     type: "section",
                     text: {
                         type: "mrkdwn",
-                        text: 'Logged in with user using userId ${userInfo.id}'
+                        text: "Logged in with user using userId ${userInfo.id}"
                     }
                 }]
             }
