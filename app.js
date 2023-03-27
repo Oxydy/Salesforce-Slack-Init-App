@@ -44,7 +44,7 @@ app.shortcut('who_am_i', async ({
                     type: "section",
                     text: {
                         type: "mrkdwn",
-                        text: "Logged in with user using userId ${userInfo.Id}"
+                        text: "Logged in with user using userId ${userInfo.id}"
                     }
                 }]
             }
