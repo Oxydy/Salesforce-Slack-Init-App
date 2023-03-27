@@ -25,9 +25,9 @@ app.shortcut('who_am_i', async ({
         });
         const userInfo = await connection.login(
             process.env.SF_USERNAME,
-            process.env.SF_PASSWD,
-            console.log(userInfo)
+            process.env.SF_PASSWD
         );
+        console.log(userInfo);
         await ack();
         const result = await client.views.open({
             trigger_id: shortcut.trigger_id,
