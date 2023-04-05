@@ -14,44 +14,8 @@ const app = new App({
     console.log('⚡️ Bolt app is running');
 })();
 
-app.shortcut('who_am_i', async ({
-    shortcut,
-    ack,
-    client
-}) => {
-    try{
-        const connection = new jsforce.Connection({
-            loginUrl: process.env.SF_LOGIN_URL
-        });
-        const userInfo = await connection.login(
-            process.env.SF_USERNAME,
-            process.env.SF_PASSWD
-        );
-        console.log(userInfo);
-        await ack();
-        const result = await client.views.open({
-            trigger_id: shortcut.trigger_id,
-            view: {
-                type: "modal",
-                title: {
-                    type: "plain_text",
-                    text: "My App"
-                },
-                close: {
-                    type: "plain_text",
-                    text: "Close"
-                },
-                blocks: [{
-                    type: "section",
-                    text: {
-                        type: "mrkdwn",
-                        text: "Logged in with user using userId ${userInfo.id}"
-                    }
-                }]
-            }
-        });
-        console.log(result);
-    }catch(error){
-        console.error(error);
-    }
+app.event('app_home_opened', async ({ event, say, client, view }) => {
+    console.log('⚡️Hello! Someone just opened the app to DM so we will send them a message!')
+    say(`Hello world and <@${event.user}>! `)
+
 });
